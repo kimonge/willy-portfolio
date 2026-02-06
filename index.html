@@ -12,7 +12,7 @@
     <meta property="og:title" content="Wilfred Onyacha Nyaberi | Portfolio" />
     <meta property="og:description" content="Factory Certified Quality Assurance (FCQA) portfolio." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="logo.png" />
+    <meta property="og:image" content="logo.jpg" />
     <meta property="og:url" content="#" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -23,10 +23,15 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a class="brand" href="#home">
-                <img class="brand-logo" src="logo.png" alt="Wilfred Onyacha Nyaberi" />
-                <h2 class="logo">Wilfred Onyacha Nyaberi</h2>
-            </a>
+            <div class="brand">
+                <button class="brand-logo-btn" type="button" id="openLogo" aria-haspopup="dialog"
+                    aria-controls="logoModal">
+                    <img class="brand-logo" src="logo.jpg" alt="Wilfred Onyacha Nyaberi" />
+                </button>
+                <a class="brand-home" href="#home">
+                    <h2 class="logo">Wilfred Onyacha Nyaberi</h2>
+                </a>
+            </div>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
                 <span class="sr-only">Toggle navigation</span>
                 <i class="fa-solid fa-bars"></i>
@@ -217,6 +222,15 @@
                     src="WILFRED_ONYANCHA_NYABERI_CV.pdf"></iframe>
             </div>
         </div>
+        <div class="modal" id="logoModal" aria-hidden="true" role="dialog" aria-label="Logo preview">
+            <div class="modal-content modal-content--logo" role="document">
+                <div class="logo-modal-actions">
+                    <button class="logo-toggle" type="button" id="toggleLogoSize" aria-pressed="false">Enlarge</button>
+                    <button class="modal-close" type="button" id="closeLogo" aria-label="Close logo">Close</button>
+                </div>
+                <img class="logo-preview" id="logoPreview" src="logo.jpg" alt="Wilfred Onyacha Nyaberi logo" />
+            </div>
+        </div>
     </main>
     <!-- Back to Top Button -->
     <button id="backToTop">
@@ -242,6 +256,11 @@
         const cvModal = document.getElementById("cvModal");
         const openCvBtn = document.getElementById("openCv");
         const closeCvBtn = document.getElementById("closeCv");
+        const logoModal = document.getElementById("logoModal");
+        const openLogoBtn = document.getElementById("openLogo");
+        const closeLogoBtn = document.getElementById("closeLogo");
+        const logoPreview = document.getElementById("logoPreview");
+        const toggleLogoSizeBtn = document.getElementById("toggleLogoSize");
 
         openCvBtn.addEventListener("click", () => {
             cvModal.classList.add("is-open");
@@ -258,6 +277,35 @@
                 cvModal.classList.remove("is-open");
                 cvModal.setAttribute("aria-hidden", "true");
             }
+        });
+
+        openLogoBtn.addEventListener("click", () => {
+            logoModal.classList.add("is-open");
+            logoModal.setAttribute("aria-hidden", "false");
+        });
+
+        closeLogoBtn.addEventListener("click", () => {
+            logoModal.classList.remove("is-open");
+            logoModal.setAttribute("aria-hidden", "true");
+            logoModal.classList.remove("is-large");
+            toggleLogoSizeBtn.setAttribute("aria-pressed", "false");
+            toggleLogoSizeBtn.textContent = "Enlarge";
+        });
+
+        logoModal.addEventListener("click", (event) => {
+            if (event.target === logoModal) {
+                logoModal.classList.remove("is-open");
+                logoModal.setAttribute("aria-hidden", "true");
+                logoModal.classList.remove("is-large");
+                toggleLogoSizeBtn.setAttribute("aria-pressed", "false");
+                toggleLogoSizeBtn.textContent = "Enlarge";
+            }
+        });
+
+        toggleLogoSizeBtn.addEventListener("click", () => {
+            const isLarge = logoModal.classList.toggle("is-large");
+            toggleLogoSizeBtn.setAttribute("aria-pressed", isLarge ? "true" : "false");
+            toggleLogoSizeBtn.textContent = isLarge ? "Smaller" : "Enlarge";
         });
 
         const navToggle = document.querySelector(".nav-toggle");

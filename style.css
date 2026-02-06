@@ -41,6 +41,16 @@ html {
     text-decoration: none;
 }
 
+.brand-logo-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
 .brand-logo {
     width: 32px;
     height: 32px;
@@ -339,6 +349,50 @@ footer {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+.modal-content--logo {
+    width: min(360px, 90vw);
+    height: auto;
+    padding: 12px;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-modal-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.logo-toggle {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.logo-toggle:hover {
+    background: #2c3e50;
+}
+
+.logo-preview {
+    width: min(280px, 80vw);
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.modal.is-large .modal-content--logo {
+    width: min(820px, 95vw);
+}
+
+.modal.is-large .logo-preview {
+    width: min(720px, 90vw);
 }
 
 .modal-close {
